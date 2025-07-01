@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abbey Road - 完全解説サイト</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            color: white;
+            padding: 40px 0;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .nav-menu {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .nav-menu a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .section {
+            background: white;
+            margin: 30px 0;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .section h2 {
+            color: #2a5298;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #2a5298;
+            padding-bottom: 10px;
+        }
+
+        .album-cover {
+            width: 300px;
+            height: 300px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #666;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .member-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .member-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .member-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            background: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            border: 3px solid rgba(255,255,255,0.3);
+        }
+
+        .member-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .member-card .role {
+            font-style: italic;
+            margin-bottom: 15px;
+            opacity: 0.9;
+            font-weight: bold;
+        }
+
+        .member-card .birth-info {
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            opacity: 0.8;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 30px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #2a5298;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            width: 45%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            margin-left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            margin-left: 55%;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 15px;
+            height: 15px;
+            background: #2a5298;
+            border-radius: 50%;
+        }
+
+        .timeline-item:nth-child(odd)::before {
+            right: -32px;
+        }
+
+        .timeline-item:nth-child(even)::before {
+            left: -32px;
+        }
+
+        .timeline-date {
+            font-weight: bold;
+            color: #2a5298;
+            margin-bottom: 10px;
+        }
+
+        .timeline-content h4 {
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .timeline-japan {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding-left: 15px;
+            margin-top: 10px;
+        }
+
+        .songs-list {
+            margin: 20px 0;
+        }
+
+        .song-item {
+            background: #f8f9fa;
+            margin: 15px 0;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #2a5298;
+        }
+
+        .song-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2a5298;
+            margin-bottom: 10px;
+        }
+
+        .song-info {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .song-description {
+            color: #555;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #a8edea 0%, #fed6e3 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-menu a {
+                display: block;
+                margin: 5px 0;
+            }
+            
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item {
+                width: calc(100% - 60px);
+                margin-left: 60px !important;
+            }
+            
+            .timeline-item::before {
+                left: -32px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎵 Abbey Road 🎵</h1>
+            <p class="subtitle">The Beatles の最高傑作 - 完全解説</p>
+        </header>
+
+        <nav class="nav-menu">
+            <a href="#album">アルバム概要</a>
+            <a href="#members">メンバー</a>
+            <a href="#timeline">年表</a>
+            <a href="#songs">全曲解説</a>
+        </nav>
+
+        <section id="album" class="section">
+            <h2>アルバム概要</h2>
+            <div class="album-cover">
+                🎵 Abbey Road ジャケット 🎵<br>
+                <small>（横断歩道を渡る4人）</small>
+            </div>
+            <div class="highlight">
+                <p><strong>Abbey Road</strong>は1969年9月26日にリリースされたビートルズの11作目のスタジオアルバムです。事実上のラストアルバムとして、バンドの集大成ともいえる作品となりました。</p>
+                <p>特にB面のメドレーは、短い楽曲を繋げた組曲形式で構成され、ロック史上最も美しい楽曲群の一つとして評価されています。</p>
+            </div>
+        </section>
+
+        <section id="members" class="section">
+            <h2>メンバープロフィール</h2>
+            <div class="members-grid">
+                <div class="member-card">
+                    <div class="member-photo">🎸</div>
+                    <h3>John Lennon</h3>
+                    <p class="role">リズムギター・ヴォーカル</p>
+                    <p class="birth-info">1940年10月9日生まれ、リバプール出身</p>
+                    <p>ビートルズの創設者の一人で、ポールと共に数々の名曲を作詞作曲。Abbey Roadでは「Come Together」「I Want You (She's So Heavy)」などを担当。平和活動家としても知られ、1980年に悲劇的な死を遂げた。</p>
+                </div>
+                <div class="member-card">
+                    <div class="member-photo">🎵</div>
+                    <h3>Paul McCartney</h3>
+                    <p class="role">ベース・ヴォーカル</p>
+                    <p class="birth-info">1942年6月18日生まれ、リバプール出身</p>
+                    <p>ビートルズの音楽的リーダー的存在で、美しいメロディーメーカーとして知られる。Abbey Roadでは「Yesterday」「Let It Be」に続く名曲を多数作曲し、B面メドレーの構想も彼によるもの。</p>
+                </div>
+                <div class="member-card">
+                    <div class="member-photo">🎼</div>
+                    <h3>George Harrison</h3>
+                    <p class="role">リードギター</p>
+                    <p class="birth-info">1943年2月25日生まれ、リバプール出身</p>
+                    <p>「静かなビートル」と呼ばれ、インド音楽への造詣が深い。Abbey Roadでは「Something」「Here Comes the Sun」という2大名曲を提供し、ソングライターとしての才能を開花させた。</p>
+                </div>
+                <div class="member-card">
+                    <div class="member-photo">🥁</div>
+                    <h3>Ringo Starr</h3>
+                    <p class="role">ドラムス</p>
+                    <p class="birth-info">1940年7月7日生まれ、リバプール出身</p>
+                    <p>本名はリチャード・スターキー。ユニークなドラムスタイルと親しみやすいキャラクターで愛される。Abbey Roadでは「Octopus's Garden」で作詞作曲を担当し、創作面でも貢献した。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="timeline" class="section">
+            <h2>1969年 ビートルズと日本の出来事</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">1969年1月</div>
+                    <div class="timeline-content">
+                        <h4>Get Back Sessionsスタート</h4>
+                        <p>後にLet It Beとなるセッションが開始。メンバー間の関係が悪化し始める。</p>
+                        <div class="timeline-japan">
+                            <strong>日本:</strong> 東大安田講堂事件発生。学生運動が最高潮に。
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1969年3月</div>
+                    <div class="timeline-content">
+                        <h4>ポール・リンダ結婚</h4>
+                        <p>ポール・マッカートニーがリンダ・イーストマンと結婚。</p>
+                        <div class="timeline-japan">
+                            <strong>日本:</strong> 日本万国博覧会の準備が本格化。
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1969年7月</div>
+                    <div class="timeline-content">
+                        <h4>Abbey Roadレコーディング開始</h4>
+                        <p>7月1日からAbbey Roadスタジオでレコーディング開始。最後の共同作業となる。</p>
+                        <div class="timeline-japan">
+                            <strong>日本:</strong> アポロ11号月面着陸を日本中がテレビで見守る。
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1969年8月</div>
+                    <div class="timeline-content">
+                        <h4>ジャケット写真撮影</h4>
+                        <p>8月8日、Abbey Road前の横断歩道で有名なジャケット写真を撮影。</p>
+                        <div class="timeline-japan">
+                            <strong>日本:</strong> ウッドストック・フェスティバルの影響で日本でもロック・フェスティバルが注目され始める。
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">1969年9月</div>
+                    <div class="timeline-content">
+                        <h4>Abbey Roadリリース</h4>
+                        <p>9月26日にAbbey Roadが全世界でリリース。即座にチャート1位を獲得。</p>
+                        <div class="timeline-japan">
+                            <strong>日本:</strong> 日本でも同時期にリリースされ、洋楽アルバムとしては異例の大ヒットを記録。
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="songs" class="section">
+            <h2>全曲解説</h2>
+            <div class="songs-list">
+                <div class="song-item">
+                    <div class="song-title">1. Come Together</div>
+                    <div class="song-info">
+                        <span>作詞作曲: John Lennon</span>
+                        <span>時間: 4:19</span>
+                        <span>リードヴォーカル: John Lennon</span>
+                    </div>
+                    <div class="song-description">
+                        アルバムの幕開けを飾る、グルーヴィーで神秘的な楽曲。チャック・ベリーの「Come Together」からインスピレーションを得たが、全く異なる楽曲に仕上がった。ポールの印象的なベースラインとジョンの謎めいた歌詞が印象的。「Shoot me」という部分は検閲を心配されたが、そのまま収録された。
+                    </div>
+                </div>
+
+                <div class="song-item">
+                    <div class="song-title">2. Something</div>
+                    <div class="song-info">
+                        <span>作詞作曲: George Harrison</span>
+                        <span>時間: 3:03</span>
+                        <span>リードヴォーカル: George Harrison</span>
+                    </div>
+                    <div class="song-description">
+                        ジョージ・ハリスンが書いた最高傑作の一つ。フランク・シナトラが「レノン＝マッカートニーの最高の楽曲」と評したが、実はジョージの作品。妻パティ・ボイドへの愛を歌った美しいラブソング。ジョージの感情豊かなギターソロも聴きどころ。
+                    </div>
+                </div>
+
+                <div class="song-item">
+                    <div class="song-title">3. Maxwell's Silver Hammer</div>
+                    <div class="song-info">
+                        <span>作詞作曲: Paul McCartney</span>
+                        <span>時間: 3:27</span>
+                        <span>リードヴォーカル: Paul McCartney</span>
+                    </div>
+                    <div class="song-description">
+                        ポール・マッカートニーのミュージックホール調の楽曲。表面的には軽快だが、連続殺人をテーマにした黒いユーモアに満ちている。他のメンバーは録音に消極的だったが、ポールは完璧主義を貫いた。アンヴィル（金床）の音も効果的に使用されている。
+                    </div>
+                </div>
+
+                <div class="song-item">
+                    <div class="song-title">4. Oh! Darling</div>
+                    <div class="song-info">
+                        <span>作詞作曲: Paul McCartney</span>
+                        <span>時間: 3:26</span>
+                        <span>リードヴォーカル: Paul McCartney</span>
+                    </div>
+                    <div class="song-description">
+                        50年代のドゥーワップやR&Bにインスパイアされた楽曲。ポールの力強いヴォーカルが印象的で、まるでリトル・リチャードのような迫力を見せる。毎朝スタジオに来てヴォーカルを練習し、最適な声の状態で録音にのぞんだという逸話がある。
+                    </div>
+                </div>
+
+                <div class="song-item">
+                    <div class="song-title">5. Octopus's Garden</div>
+                    <div class="song-info">
+                        <span>作詞作曲: Ringo Starr</span>
+                        <span>時間: 2:51</span>
+                        <span>リードヴォーカル: Ringo Starr</span>
+                    </div>
+                    <div class="song-description">
+                        リンゴ・スターが作詞作曲を手がけた心温まる楽曲。サルディニア島でのバカンス中、船長からタコの生態について聞いた話からインスピレーションを得た。ジョージがギターで、ポールがベースで協力し、リンゴの想像力豊かな海底世界を音楽で表現している。
+                    </div>
+                </div>
+
+                <div class="song-item">
+                    <div class="song-title">6. I Want You (She's So Heavy)</div>
+                    <div class="song-info">
+                        <span>作詞作曲: John Lennon</span>
+                        <span>時間: 7:47</span>
+                        <span>リードヴォーカル: John Lennon</span>
+                    </div>
+                    <div class="song-description">
+                        アルバム中最長の楽曲で、ジョンの妻オノ・ヨーコへの激しい愛を歌った。シンプルな歌詞の繰り返しと重厚なギターリフが印象的。後半の長いインストゥルメンタル部分は「ヘヴィメタルの先駆け」とも言われる。最後は突然音が切れて終わる斬新な構成。
+                    </div>
+                </div>
+
+                <div class="highlight">
+                    <h3>B面メドレー - 組曲形式の傑作</h3>
+                    <p>B面は短い楽曲を巧みに繋げた組曲形式で構成されており、ロック史上最も美しい楽曲群の一つとされています。ポール・マッカートニーの構想により実現したこの形式は、後のプログレッシブ・ロックにも大きな影響を与えました。</p>
+                </div>
+
+                <div class="song-item">
+                    <div class="song-title">7. Here Comes the Sun</div>
+                    <div class="song-info">
+                        <span>作詞作曲: George Harrison</span>
+                        <span>時間: 3:05</span>
+                        <span>リードヴォーカル: George Harrison</span>
+                    </div>
+                    <div class="song-description">
+                        ジョージ・ハリスンの代表作の一つ。エリック・クラプトンの家の庭で書かれた、希望に満ちた美しい楽曲。複雑な拍子記号（7/8拍子と4/4拍子の組み合わせ）を使用しているが、非常に自然に聴こえる。ムーグ・シンセサイザーも効果的に使用されている。
+                    </div>
+                </div>
+
+                <div class="song-item">
+                    <div class="song-title">8. Because</div>
+                    <div class="song-info">
+                        <span>作詞作曲: John Lennon</span>
+                        <span>時間: 2:45</span>
+                        <span>リードヴォーカル: John, Paul, George (ハーモニー)</span>
+                    </div>
+                    <div class="song-description">
+                        ベートーヴェンの「月光ソナタ」を逆再生したコード進行からインスピレーションを得た楽曲。3人のハーモニーが9重に重ねられ（各人3回ずつ録音）、まるで天使の合唱のような美しさを生み出している。ハープシコードとオルガンの使用も印象的。
+                    </div>
+                </div>
+
+                <div class="song-item">
+                    <div class="song-title">9-16. メドレー</div>
+                    <div class="song-info">
+                        <span>You Never Give Me Your Money / Sun King / Mean Mr. Mustard / Polythene Pam / She Came in Through the Bathroom Window / Golden Slumbers / Carry That Weight / The End</span>
+                    </div>
+                    <div class="song-description">
+                        <strong>You Never Give Me Your Money</strong> - バンドの金銭問題を歌ったポールの楽曲からメドレーが始まる。<br><br>
+                        <strong>Sun King</strong> - 夢想的で美しい楽曲。イタリア語、スペイン語、ポルトガル語の意味不明な歌詞が魅力的。<br><br>
+                        <strong>Mean Mr. Mustard</strong> - ジョンが書いた風刺的な短い楽曲。<br><br>
+                        <strong>Polythene Pam</strong> - キャヴァーン・クラブ時代を思い出させるロックンロール。<br><br>
+                        <strong>She Came in Through the Bathroom Window</strong> - ポールの家に忍び込んだファンの実話に基づく。<br><br>
+                        <strong>Golden Slumbers</strong> - 17世紀の詩にポールが曲をつけた子守唄。<br><br>
+                        <strong>Carry That Weight</strong> - バンドの重荷を歌った楽曲で、4人全員がヴォーカルを担当。<br><br>
+                        <strong>The End</strong> - 「愛こそすべて」という名言で締めくくられる、ビートルズの真の最終楽曲。
+                    </div>
+                </div>
+
+                <div class="song-item">
+                    <div class="song-title">17. Her Majesty (隠しトラック)</div>
+                    <div class="song-info">
+                        <span>作詞作曲: Paul McCartney</span>
+                        <span>時間: 0:23</span>
+                        <span>リードヴォーカル: Paul McCartney</span>
+                    </div>
+                    <div class="song-description">
+                        ロック史上初の「隠しトラック」として20秒の無音の後に収録された。エリザベス女王への軽やかなオマージュ。当初はメドレーの一部として作られたが、ポールが「軽すぎる」として削除を指示。しかし、エンジニアがテープの最後に残したため、結果的に隠しトラックとなった。
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>まとめ</h2>
+            <div class="highlight">
+                <p><strong>Abbey Road</strong>は、ビートルズの創造性と音楽的成熟が最高潮に達した作品です。メンバー間の関係が悪化していく中でも、プロフェッショナルとして最高の音楽を作り上げた彼らの姿勢は、今も多くのミュージシャンに影響を与え続けています。</p>
+                <p>特にB面のメドレーは、ロック音楽の可能性を大きく拡げた革新的な試みでした。単なる楽曲の寄せ集めではなく、一つの物語として構成された組曲は、後のコンセプトアルバムやプログレッシブ・ロックの発展に大きな影響を与えました。</p>
+                <p>50年以上経った今でも、Abbey Roadは色褪せることのない永遠の名作として愛され続けています。</p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // スムーズスクロール
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
